@@ -90,6 +90,12 @@ public class ArrayList<E> extends AbstractList<E> {
         return ELEMENT_NOT_FOUND;
     }
 
+    @Override
+    public String toString() {
+        //to do
+        return super.toString();
+    }
+
     private void ensureCapacity(int capacity) {
         int oldCapacity = elements.length;
         if (oldCapacity >= capacity) return;
