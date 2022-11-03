@@ -9,7 +9,7 @@ public class Main {
 //        list.add(1,44);
 //        list.add(4,55);
 //        list.remove(2);
-        System.out.println(list.indexOf(33));
+        System.out.println(list);
 
 
     }

@@ -1,6 +1,6 @@
 package _03_list;
 
-public class SingleLinkedList<E> extends AbstractList<E>{
+public class SingleLinkedList<E> extends AbstractList<E> {
 
     private Node<E> first; // initially null;
 
@@ -17,9 +17,10 @@ public class SingleLinkedList<E> extends AbstractList<E>{
 
     /**
      * 迭代器，去找到某个index上的node
+     *
      * @param index
      */
-    private Node<E> node(int index){
+    private Node<E> node(int index) {
         rangeCheck(index);
         Node<E> node = first;
         for (int i = 0; i < index; i++) {
@@ -33,9 +34,9 @@ public class SingleLinkedList<E> extends AbstractList<E>{
         rangeCheckForAdd(index);
 
         //head
-        if (index == 0){
+        if (index == 0) {
             first = new Node<E>(element, first);
-        }else {
+        } else {
             //current, tail
             Node<E> preNode = node(index - 1);
             preNode.next = new Node<>(element, preNode.next);
@@ -59,9 +60,9 @@ public class SingleLinkedList<E> extends AbstractList<E>{
         rangeCheck(index);
         Node<E> removedNode = first;
         //head
-        if (index == 0){
+        if (index == 0) {
             first = first.next;
-        }else {
+        } else {
             //current, tail
             Node<E> preNode = node(index - 1);
             removedNode = preNode.next;
@@ -81,7 +82,7 @@ public class SingleLinkedList<E> extends AbstractList<E>{
                 if (node.value == null) return i;
                 node = node.next;
             }
-        }else {
+        } else {
             Node<E> node = first;
             for (int i = 0; i < size; i++) {
                 if (element.equals(node.value)) return i;
@@ -89,9 +90,25 @@ public class SingleLinkedList<E> extends AbstractList<E>{
             }
         }
         return ELEMENT_NOT_FOUND;
-       }
+    }
 
-    private static class Node<E>{
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("size: ").append(size).append(",{");
+        Node<E> node = first;
+        for (int i = 0; i < size; i++) {
+            sb.append(node.value);
+            node = node.next;
+            if (i != size - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private static class Node<E> {
         E value;
         Node<E> next;
 
