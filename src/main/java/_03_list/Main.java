@@ -7,10 +7,13 @@ public class Main {
         list.add(22);
         list.add(33);
         list.add(44);
+        System.out.println(list.indexOf(33));
+//        list.set(1, 66);
+//        System.out.println(list.remove(3));
 
-        while (list.size() != 0){
-            System.out.println(list.remove(0));
-        }
+//        while (list.size != 0){
+//            System.out.println(list.remove(0));
+//        }
 
 
 //        list.add(0,66);
