@@ -2,12 +2,19 @@ package _03_list;
 
 public class Main {
     public static void main(String[] args) {
-        LinkedList<Integer> list = new LinkedList<>();
-        list.add(11);
-        list.add(22);
-        list.add(33);
-        list.add(44);
-        System.out.println(list.indexOf(33));
+//        LinkedList<Integer> list = new LinkedList<>();
+//        list.add(11);
+//        list.add(22);
+//        list.add(33);
+//        list.add(44);
+        LinkedList<Person> list = new LinkedList<>();
+        list.add(new Person("A", 10));
+        list.add(new Person("B", 11));
+        list.add(new Person("C", 12));
+        list.add(new Person("D", 13));
+        list.add(new Person("E", 14));
+        System.out.println(list);
+//        System.out.println(list.indexOf(33));
 //        list.set(1, 66);
 //        System.out.println(list.remove(3));
 

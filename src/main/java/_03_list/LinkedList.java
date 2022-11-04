@@ -133,4 +133,20 @@ public class LinkedList<E> extends AbstractList<E> {
         return ELEMENT_NOT_FOUND;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("size: ").append(size).append(",{");
+        Node<E> node = first;
+        for (int i = 0; i < size; i++) {
+            sb.append(node.value);
+            node = node.next;
+            if (i != size - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
 }
