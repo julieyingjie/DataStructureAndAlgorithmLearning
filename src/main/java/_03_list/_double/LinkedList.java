@@ -1,4 +1,6 @@
-package _03_list;
+package _03_list._double;
+
+import _03_list.AbstractList;
 
 public class LinkedList<E> extends AbstractList<E> {
 

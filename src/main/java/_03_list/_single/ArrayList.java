@@ -1,4 +1,6 @@
-package _03_list;
+package _03_list._single;
+
+import _03_list.AbstractList;
 
 public class ArrayList<E> extends AbstractList<E> {
 
