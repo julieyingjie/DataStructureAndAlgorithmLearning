@@ -60,12 +60,15 @@ public class DoublyCircularLinkedList<E> extends AbstractList<E> {
 
         if (index == size) { //tail
             Node<E> oldLast = last;
-            Node<E> newLast = new Node<>(element, oldLast, null);
-            last = newLast;
+            last = new Node<>(element, oldLast, first);
+
             if (size == 0) { // 空链表的情况下的添加
-                first = newLast;
+                first = last; // z自指向的操作
+                last.next = last;
+                last.prev = last;
             } else { // 正常尾部添加
-                oldLast.next = newLast;
+                oldLast.next = last;
+                first.prev = last;
             }
         } else if (index == 0) { //head
             Node<E> oldFirst = first;
