@@ -1,12 +1,14 @@
 package _03_list;
 
+import _03_list._double.DoublyCircularLinkedList;
 import _03_list._double.LinkedList;
 import _03_list._single.SingleCircularLinkedList;
 
 public class Main {
     public static void main(String[] args) {
 //        test1();
-        test2();
+//        test2();
+        test4();
 
 //        LinkedList<Integer> list = new LinkedList<>();
 //        list.add(11);
@@ -40,6 +42,30 @@ public class Main {
 //        list.remove(2);
 //        System.out.println(list);
 
+    }
+
+    public static void test4(){
+        DoublyCircularLinkedList<Integer> list = new DoublyCircularLinkedList<Integer>();
+        list.add(0,44);
+        list.add(1,55);
+        list.add(2,66);
+//        System.out.println(list.remove(2));
+        while (list.size > 0){
+            list.remove(0);
+        }
+        System.out.println(list);
+    }
+
+    public static void test3(){
+        DoublyCircularLinkedList<Integer> list = new DoublyCircularLinkedList<Integer>();
+        list.add(0,44);
+        list.add(1,55);
+        list.add(2,66);
+//        list.remove(0);
+//        while (list.size > 0){
+//            list.remove(0);
+//        }
+        System.out.println(list);
     }
 
     public static void test2(){

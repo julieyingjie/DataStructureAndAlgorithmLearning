@@ -99,26 +99,24 @@ public class DoublyCircularLinkedList<E> extends AbstractList<E> {
 
     @Override
     public E remove(int index) {
-
         rangeCheck(index);
 
-        //common steps
         Node<E> removedNode = node(index);
-        Node<E> prevNode = removedNode.prev;
-        Node<E> nextNode = removedNode.next;
-
-        if (index == 0) { // head
-            first = nextNode;
-        } else { // current && tail
+        // 链表中只有一个节点需要删除的时候
+        if (size == 1){
+            first = null;
+            last = null;
+        }else { // current
+            Node<E> prevNode = removedNode.prev;
+            Node<E> nextNode = removedNode.next;
             prevNode.next = nextNode;
-        }
-
-        if (index == size - 1) { // tail
-            last = prevNode;
-        } else { // head && current
             nextNode.prev = prevNode;
-        }
 
+            // head
+            if (index == 0)  first = nextNode;
+            // tail
+            if (index == size - 1)  last = prevNode;
+        }
         size--;
         return removedNode.value;
     }
