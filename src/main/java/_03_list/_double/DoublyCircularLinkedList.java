@@ -12,6 +12,8 @@ public class DoublyCircularLinkedList<E> extends AbstractList<E> {
     private Node<E> first;
     private Node<E> last;
 
+    private Node<E> current; // this is for the josephus circle problem
+
     private static class Node<E> {
         E value;
         Node<E> prev;
@@ -97,6 +99,11 @@ public class DoublyCircularLinkedList<E> extends AbstractList<E> {
         return oldNode.value;
     }
 
+    private E remove(Node<E> current){
+        int index = indexOf(current.value);
+        return remove(index);
+    }
+
     @Override
     public E remove(int index) {
         rangeCheck(index);
@@ -156,5 +163,32 @@ public class DoublyCircularLinkedList<E> extends AbstractList<E> {
         sb.append("}");
         return sb.toString();
     }
+
+    // the below methods are for the josephus circle problem
+    public void reset(){
+        current = first;
+    }
+
+    public E next(){
+        if (current == null) return null;
+        current = current.next;
+        return current.value;
+    }
+
+    // This remove is totally different with the linked list remove method
+    // This doesn't have input index
+    // It's for: delete the node that current is pointing to, then let current point to the next node
+    // 删除current指向的节点。current 有可能为null
+    public E remove(){
+        if (current == null) return null;
+        Node<E> next = current.next;
+        E val = remove(current);
+        if (size == 0)  current = null;
+        else  current = next;
+
+        return val;
+    }
+
+
 
 }

@@ -8,7 +8,9 @@ public class Main {
     public static void main(String[] args) {
 //        test1();
 //        test2();
-        test4();
+//        test4();
+
+        test5();
 
 //        LinkedList<Integer> list = new LinkedList<>();
 //        list.add(11);
@@ -42,6 +44,27 @@ public class Main {
 //        list.remove(2);
 //        System.out.println(list);
 
+    }
+
+    public static void test5(){
+        DoublyCircularLinkedList<Integer> list = new DoublyCircularLinkedList<Integer>();
+        for (int i = 1; i <= 8; i++) {
+            list.add(i);
+        }
+
+        //reset
+        list.reset();
+
+        while (list.size > 1){
+           next(list, 2);
+            System.out.println(list.remove());
+        }
+    }
+
+    public static void next(DoublyCircularLinkedList<Integer> list, int count){
+        for (int i = 0; i < count; i++) {
+            list.next();
+        }
     }
 
     public static void test4(){
