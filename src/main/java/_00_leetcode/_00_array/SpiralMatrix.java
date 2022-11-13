@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class SpiralMatrix {
     public List spiralOrder(int[][] matrix) {
-        if (matrix == null) return null;
+        if (matrix == null || matrix.length == 0) return null;
 
         List<Integer> res = new ArrayList<>();
 

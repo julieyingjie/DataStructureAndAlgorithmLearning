@@ -16,7 +16,7 @@ public class MatrixPrint {
     }
 
     public static void matrixPrint(int[][] matrix){
-        if (matrix == null) return;
+        if (matrix == null || matrix.length == 0) return;
 
         // 1. 设置 a, b 指针来分别控制，行，列
         int aR = 0; //表示行
