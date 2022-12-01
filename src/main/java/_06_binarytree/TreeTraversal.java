@@ -13,13 +13,42 @@ public class TreeTraversal {
         root.left.right = new Node(5, null, null);
         root.right.left = new Node(8, null, null);
         root.right.right = new Node(11, null, null);
-//
+
 //        postOrderTraversalByRecursion(root);
 //        System.out.println();
 //        postOrderTraversal(root);
 
-        levelOrderTraversal(root);
+//        levelOrderTraversal(root);
+        System.out.println(height(root));
     }
+
+
+    // 递归的方式
+    private static int height(Node node){
+        if (node == null) return 0;
+
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(node);
+        int height = 0;
+        int levelSize = 1;
+
+        while (!queue.isEmpty()){
+            Node poll = queue.poll();
+            levelSize--;
+
+            if (poll.left != null) queue.offer(poll.left);
+            if (poll.right != null) queue.offer(poll.right);
+
+            if (levelSize == 0){//意味着当前层遍历完了，即将遍历下一层
+                levelSize = queue.size();
+                height++;
+            }
+        }
+        return height;
+    }
+
+
+
 
     private static class Node {
         public int val;
