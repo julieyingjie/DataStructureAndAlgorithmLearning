@@ -1,7 +1,5 @@
 package _00_leetcode._04_tree;
 
-import _06_binarytree.TreeTraversal;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
