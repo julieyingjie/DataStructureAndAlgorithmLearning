@@ -1,7 +1,0 @@
-female cow = 1 ---> 1  y ---> child female
-child female ---> 4  y ----> adult female cow
-
-每头母牛，每隔一年生出一头小母牛，每个小母牛，每过4年，长成成年可以生育的母牛。
-
-问： 隔n 年后，一共有多少头牛？ （不考虑有牛死的情况）
-
