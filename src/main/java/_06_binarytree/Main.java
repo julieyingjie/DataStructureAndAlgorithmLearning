@@ -1,6 +1,6 @@
 package _06_binarytree;
 
-import _06_binarytree.file.Files;
+import _07_avlTree.file.Files;
 import _06_binarytree.printer.BinaryTrees;
 
 public class Main {

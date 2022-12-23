@@ -14,17 +14,17 @@ public class isBalancedTree {
         root.right.left = new TreeNode(14, null, null);
         root.right.right = new TreeNode(16, null, null);
         root.right.left.left = new TreeNode(12, null, null);
-//        root.right.left.left.right = new TreeNode(13, null, null);
+//      root.right.left.left.right = new TreeNode(13, null, null);
 
         System.out.println(isBalanced2(root));
 
     }
 
 
-//          java bean / domain / pojo  一个真实存在的对象 （eg. Student, Course） --> table
-//          dto: data transfer obj  数据的传输对象，用来传递数据
+//   java bean / domain / pojo  一个真实存在的对象 （eg. Student, Course） --> table
+//   dto: data transfer obj  数据的传输对象，用来传递数据
 
-    public static class ReturnData{
+    public static class ReturnData {
         public boolean isB;
         public int height;
 
@@ -34,11 +34,11 @@ public class isBalancedTree {
         }
     }
 
-    public static boolean isBalanced(TreeNode root){
+    public static boolean isBalanced(TreeNode root) {
         return isB(root).isB;
     }
 
-    public static ReturnData isB(TreeNode root){
+    public static ReturnData isB(TreeNode root) {
         // Base case
         if (root == null) return new ReturnData(true, 0);
 
@@ -51,12 +51,12 @@ public class isBalancedTree {
         if (!rightData.isB) return new ReturnData(false, 0);
 
         // 左右都平，但是高度差大于1
-        if (Math.abs(leftData.height - rightData.height) > 1 ) return new ReturnData(false, 0);
+        if (Math.abs(leftData.height - rightData.height) > 1) return new ReturnData(false, 0);
 
         return new ReturnData(true, Math.max(leftData.height, rightData.height) + 1);
     }
 
-    public static boolean isBalanced2(TreeNode root){
+    public static boolean isBalanced2(TreeNode root) {
         if (root == null) return true;
         if (Math.abs(height(root.left) - height(root.right)) > 1) return false;
 
