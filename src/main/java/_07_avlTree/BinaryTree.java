@@ -354,6 +354,16 @@ public class BinaryTree<E> implements BinaryTreeInfo {
             return this.left == null && this.right == null;
         }
 
+        protected boolean isLeftChild() {
+
+            return this == this.parent.left;
+        }
+
+        protected boolean isRightChild() {
+
+            return this == this.parent.right;
+        }
+
         @Override
         public String toString() {
             return " element=" + element + ", parent=" + parent;

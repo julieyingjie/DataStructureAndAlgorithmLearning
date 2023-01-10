@@ -29,8 +29,8 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
 
         // 添加第一个节点
         if (root == null){
-            // TODO: 2022-12-03
-            root = new Node<>(element, null);
+
+            root = createNode(element, null);
             size++;
             afterAdd(root);
             return;
@@ -54,8 +54,8 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         }
 
         // 3. 创建一个新节点，并且插入到指定的位置
-        // TODO: 2022-12-03
-        Node<E> newNode = new Node<>(element,parent);
+
+        Node<E> newNode = createNode(element,parent);
         if (cmp > 0) parent.right = newNode;
         else parent.left = newNode;
         size++;

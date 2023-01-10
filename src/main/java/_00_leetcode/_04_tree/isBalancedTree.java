@@ -35,19 +35,26 @@ public class isBalancedTree {
     }
 
     public static boolean isBalanced(TreeNode root) {
+        //recursion
+        //divide
         return isB(root).isB;
     }
 
     public static ReturnData isB(TreeNode root) {
         // Base case
+        // base case principle: 递归的最后一层，最后一次调用这个方法的场景。
+        // 来到叶节点时，方法就停
+        // 叶节点，一定是个平衡树
         if (root == null) return new ReturnData(true, 0);
 
 //          利用分置的思路divide
 //          recursion的技术
         ReturnData leftData = isB(root.left);
-        if (!leftData.isB) return new ReturnData(false, 0);
+        // if 左侧树不平衡， 只要有一次树不平衡，就不需要往下走了。直接返回false。
+        if (!leftData.isB) return new ReturnData(false, 0); // 这个地方的height是多少都可以，不重要。因为反正已经返回了false了。
 
         ReturnData rightData = isB(root.right);
+        // if 右侧书不平衡， similar to left not balanced tree
         if (!rightData.isB) return new ReturnData(false, 0);
 
         // 左右都平，但是高度差大于1
