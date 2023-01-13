@@ -16,12 +16,13 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         this.comparator = comparator;
     }
 
-    public void afterAdd(Node<E> node){ }
+
 
     public Node<E> createNode(E element, Node<E> parent){
         return new Node<>(element, parent);
     }
 
+    public void afterAdd(Node<E> node){ }
     // add elements
     public void add(E element){
         //对添加元素进行判定
@@ -68,6 +69,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
     }
 
 
+
     /**
      *
      * 1. 删除叶子结点： 定位到删除节点。直接将parent的相应left,right置空
@@ -80,6 +82,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         remove(node(element));
     }
 
+    public void afterRemove(Node<E> node){ }
     private void remove(Node<E> node){
         size--;
         // 1. 删除度为2的节点
@@ -99,15 +102,21 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
             if (node.parent == null) root = replacement;
             if (node == node.parent.left) node.parent.left = replacement;
             else  node.parent.right = replacement;
+
+            afterRemove(node);
         }
 
         // 3. 删除叶子结点
         // 当node 为root节点
-        else if (node.parent == null) root = null;
-
+        else if (node.parent == null) {
+            root = null;
+            afterRemove(node);
+        }
         else{
             if (node == node.parent.left) node.parent.left = null;
             else  node.parent.right = null;
+
+            afterRemove(node);
         }
     }
 

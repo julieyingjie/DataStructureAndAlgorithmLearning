@@ -10,10 +10,18 @@ public class Main {
 
     public static void test5(){
         AVLTree<Integer> tree = new AVLTree<>();
-        int[] arr = {1,2,3,4,5,6,7,8,9};
-        for (int i = 0; i < arr.length; i++) {
-            tree.add(arr[i]);
+
+        for (int i = 0; i < 18; i++) {
+            tree.add(i);
         }
+        BinaryTrees.println(tree);
+
+        System.out.println("========================================================================================");
+        tree.remove(17);
+        BinaryTrees.println(tree);
+
+        System.out.println("========================================================================================");
+        tree.remove(16);
         BinaryTrees.println(tree);
     }
 }

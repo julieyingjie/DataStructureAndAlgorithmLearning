@@ -22,10 +22,23 @@ public class AVLTree <E> extends BinarySearchTree<E>{
             if (isBalanced(node)){
                 calculateHeight(node);
             }else {
-                rebalance2(node);
+                rebalance(node);
                 break;
             }
         }
+    }
+
+    @Override
+    public void afterRemove(Node<E> node){
+        while((node = node.parent) != null){// node = root
+            if (isBalanced(node)){
+                calculateHeight(node);
+            }else {
+                rebalance(node);
+
+            }
+        }
+
     }
 
     // 最重要的环节
