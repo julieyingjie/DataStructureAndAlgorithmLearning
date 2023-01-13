@@ -356,12 +356,12 @@ public class BinaryTree<E> implements BinaryTreeInfo {
 
         protected boolean isLeftChild() {
 
-            return this == this.parent.left;
+            return parent != null && this == this.parent.left;
         }
 
         protected boolean isRightChild() {
 
-            return this == this.parent.right;
+            return parent != null && this == this.parent.right;
         }
 
         @Override
