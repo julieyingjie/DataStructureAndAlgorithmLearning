@@ -4,14 +4,14 @@ import _08_heap.printer.BinaryTreeInfo;
 
 import java.util.Comparator;
 
-// 默认实现maximumHeap
+// 默认实现maximum Heap
 public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
     private E[] elements;
     private static final int DEFAULT_CAPACITY = 10;
 
     public BinaryHeap(Comparator<E> comparator, E[] elements) {
         super(comparator);
-//        this.elements = elements;//浅拷贝
+//        this.elements = elements;//浅拷贝 直接将引用传进来，比较危险
         if (elements == null || elements.length == 0) {
             this.elements = (E[]) new Object[DEFAULT_CAPACITY];
         } else {
@@ -20,15 +20,13 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
             this.elements = (E[]) new Object[capacity];
 
             for (int i = 0; i < size; i++) {
-                this.elements[i] = elements[i];//深拷贝
-
+                this.elements[i] = elements[i];//深拷贝 将值一个一个放进来
             }
 
         }
 
-        // heapify();
-
-
+        // 进行建堆操作
+         heapify();
     }
 
 
@@ -63,18 +61,21 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
         return elements[0];
     }
 
-    private void heapify(){
-        // 1. Top-down sift up
-        for (int i = 0; i < size; i++) {
-            siftUp(i);
-        }
+    private void heapify(){ // 建堆
+        // 1. Top-down sift up  一般情况不用这种方法，因为这种方法的efficiency特别差。
+//        for (int i = 0; i < size; i++) {
+//            siftUp(i);
+//        }
 
-        // 2. Bottom-up sift down
-        for (int i = (size >> 1) - 1; i > 0; i--) {
-
+        // 2. Bottom-up sift down 从第一个非叶节点开始
+        for (int i = (size >> 1) - 1; i >= 0; i--) {
+            siftDown(i);
         }
     }
     private void siftDown(int index) {
+
+        // 因为当换到叶节点上时，所有的叶节点都不需要再交换了。
+        // 所有叶节点的个数是总节点 n / 2， 所以只需要操作前面一半的节点
         int half = size >> 1;
         E element = elements[index];
 
@@ -83,9 +84,13 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
             // index has 2 conditions:
             // 1. left, right both exists
             // 2. left only
-            // 默认于左孩子
+            // 默认有左孩子
+
+            // 拿到左孩子的下标
             int childIndex = (index << 1) + 1;
-            E child = elements[childIndex];
+            E child = elements[childIndex]; // 取得值
+
+            // 也有可能有右孩子
             int rightChildIndex = childIndex + 1;
 
             // find the max value between left child and right child
@@ -146,9 +151,17 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
     public E remove() {
         emptyCheck();
         E root = elements[0];
+
+        // 拿到最后一个节点
         int lastIndex = --size;
+
+        // 用最后一个节点上的值，去覆盖到root上去，也就是目前root的值是最后一个节点的值
         elements[0] = elements[lastIndex];
+
+        // 删掉最后一个节点；
         elements[lastIndex] = null;
+
+        // 检查是否仍然符合大顶堆，否，则进行修改操作
         siftDown(0);
 
         return root;
