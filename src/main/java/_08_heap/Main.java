@@ -25,7 +25,9 @@ public class Main {
 //            BinaryTrees.println(heap);
 //            System.out.println(heap.size());
 
-            test();
+//            test();
+            Integer[] arr = {5, 99, 3, 4, 7, 0, 1, 55, 42, 89};
+            topK(arr, 3);
         }
 
         public static void test(){
@@ -38,5 +40,26 @@ public class Main {
                 }
             }, arr);
             BinaryTrees.println(heap);
+        }
+
+        public static void topK(Integer[] data, int k){
+            BinaryHeap<Integer> minHeap = new BinaryHeap<>(new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    return o1 - o2;
+                }
+            });
+
+            // 建个堆
+            for (int i = 0; i < data.length; i++) {
+                if (minHeap.size < k){
+                    minHeap.add(data[i]);
+                }else if (data[i] < minHeap.get()){
+                    minHeap.replace(data[i]);
+                }
+
+            }
+
+            BinaryTrees.println(minHeap);
         }
 }
