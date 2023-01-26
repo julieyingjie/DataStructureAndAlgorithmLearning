@@ -32,7 +32,6 @@ public class Main {
 
         public static void test(){
             Integer[] arr = {5, 9, 3, 4, 7, 0, 1, 55, 42, 89};
-
             BinaryHeap<Integer> heap = new BinaryHeap<>(new Comparator<Integer>() {
                 @Override
                 public int compare(Integer o1, Integer o2) {
