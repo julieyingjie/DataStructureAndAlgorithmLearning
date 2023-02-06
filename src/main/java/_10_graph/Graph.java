@@ -2,7 +2,6 @@ package _10_graph;
 
 public interface Graph<V, E> {
 
-
     public int verticesSize();
     int edgeSize();
 

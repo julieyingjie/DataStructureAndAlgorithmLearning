@@ -114,7 +114,7 @@ public class Person {
 
     public static void test(){
         Person p1 = new Person(54, 17.7f, "jeff");
-//        Person p2 = new Person(45, 18.2f, "pony");
+        Person p2 = new Person(45, 18.2f, "pony");
         Person p3 = new Person(54, 17.7f, "jeff");
         HashMap<Object, Integer> map  = new HashMap<>();
         map.put(p1, 111);

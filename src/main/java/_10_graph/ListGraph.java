@@ -56,8 +56,8 @@ public class ListGraph<V, E> implements Graph<V, E> {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Edge<V, E> edge = (Edge<V, E>) o;
-            return Objects.equals(weight, edge.weight) &&
-                    Objects.equals(from, edge.from) &&
+//            return
+            return  Objects.equals(from, edge.from) &&
                     Objects.equals(to, edge.to);
         }
 
@@ -124,11 +124,56 @@ public class ListGraph<V, E> implements Graph<V, E> {
 
     @Override
     public void addVertex(V v) {
+        if (vertices.containsKey(v)) return;
+        vertices.put(v, new Vertex<>(v));
 
     }
 
     @Override
     public void removeVertex(V v) {
+        // 删除该点
+        Vertex<V, E> vertex = vertices.remove(v);
+        if (vertex == null) return;
+
+//        // 删除跟该点相关的边
+//        vertex.outDegrees.forEach((Edge<V, E> edge) ->{
+//            removeEdge(edge.from.value, edge.to.value);
+//
+//        // 将该条边从边集中删掉
+//        edges.remove(edge);
+//        });
+//
+//        vertex.inDegrees.forEach((Edge<V, E> edge) ->{
+//        removeEdge(edge.to.value, edge.from.value);
+//
+//        // 将该条边从边集中删掉
+//        edges.remove(edge);
+//        });
+
+        //如果你有边遍历，边删除的需求，请使用迭代器
+
+        for (Iterator<Edge<V, E>> iterator = vertex.outDegrees.iterator();iterator.hasNext();){
+            Edge<V, E> edge = iterator.next();
+            //需要通过这条边找到这条边的终点，在终点edge.to的indegrees中把edge删掉
+            edge.to.inDegrees.remove(edge);
+
+            iterator.remove();
+            edges.remove(edge);
+
+        }
+
+        for (Iterator<Edge<V, E>> iterator = vertex.inDegrees.iterator();iterator.hasNext();){
+            Edge<V, E> edge = iterator.next();
+            //需要通过这条边找到这条边的终点，在终点edge.to的indegrees中把edge删掉
+            edge.from.outDegrees.remove(edge);
+
+            iterator.remove();
+            edges.remove(edge);
+
+        }
+
+
+
 
     }
 
@@ -136,6 +181,19 @@ public class ListGraph<V, E> implements Graph<V, E> {
 
     @Override
     public void removeEdge(V from, V to) {
+        Vertex<V, E> fromVertex = vertices.get(from);
+        if (fromVertex == null) return;
+
+        Vertex<V, E> toVertex = vertices.get(to);
+        if (toVertex == null) return;
+
+        //代码能来到这里，说明，起点和终点都存在，但不代表起点终点之间有边
+        Edge<V, E> edge = new Edge<>(fromVertex, toVertex);
+
+        if ( fromVertex.outDegrees.remove(edge)){
+            toVertex.inDegrees.remove(edge);
+            edges.remove(edge);
+        }
 
     }
 
