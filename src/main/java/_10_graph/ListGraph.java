@@ -222,7 +222,6 @@ public class ListGraph<V, E> implements Graph<V, E> {
         for (Edge<V, E> edge : beginVertex.outDegrees) {
             if (set.contains(edge.to)) continue;
             dfs1(edge.to, set);
-
         }
     }
 
